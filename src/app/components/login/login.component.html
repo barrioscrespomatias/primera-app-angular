@@ -1,1 +1,11 @@
-<p>login works!</p>
+<form [formGroup]="usuario.usuarioForm">
+    <div>
+        <label for="name">Ingrese nombre: </label>
+        <input id="name" type="text" formControlName="nombre">
+    </div>
+
+    <div>
+        <label for="name">Ingrese clave: </label>
+        <input id="clave" type="password" formControlName="clave" required minlength="4">
+    </div>
+</form>

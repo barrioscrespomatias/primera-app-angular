@@ -1,0 +1,6 @@
+<form [formGroup]="usuario.usuarioForm" (ngSubmit)="usuario.onSubmit()"></form>
+
+<!-- <button type="submit" [disabled]="!usuario.usuarioForm.valid">Submit</button> -->
+<button (click) = "usuario.onSubmit()" [disabled]="!usuario.usuarioForm.valid">Inciar sesion</button>
+
+<p>Form Status: {{ usuario.usuarioForm.status }}</p>

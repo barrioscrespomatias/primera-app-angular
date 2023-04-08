@@ -7,17 +7,16 @@ botones "calcular" y "limpiar cuadros de textos" -->
 
 <div>
     <label for="edadUno">Ingrese primera edad: </label>
-    <input id="edadUno" type="number" [(ngModel)]="edadUno">
+    <input id="edadUno" type="number" [(ngModel)]="edadUno" class="form-control w-25">
 </div>
 
 <div>
     <label for="edadDos">Ingrese segunda edad: </label>
     <input type="number" id="edadDos" [(ngModel)]="edadDos">
 </div>
-
-<hr>
+<br>
 <button (click)="Calcular()">Calcular</button>
-<hr>
+<br>
 
 <div>
     <label for="resultado">Resultado</label>
@@ -28,3 +27,5 @@ botones "calcular" y "limpiar cuadros de textos" -->
     <label for="promedio">Promedio</label>
     <input type="number" [(ngModel)]="promedio">
 </div>
+
+<hr>
