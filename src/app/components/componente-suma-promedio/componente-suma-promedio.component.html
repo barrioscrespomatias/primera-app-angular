@@ -1,0 +1,30 @@
+<!-- 1- (app.component.html) Realizar: -->
+
+<!-- mostrar el promedio y la suma en dos cuadros de textos nuevos
+botones "calcular" y "limpiar cuadros de textos" -->
+<hr>
+<p>Ejercicio Suma y promedio</p>
+
+<div>
+    <label for="edadUno">Ingrese primera edad: </label>
+    <input id="edadUno" type="number" [(ngModel)]="edadUno">
+</div>
+
+<div>
+    <label for="edadDos">Ingrese segunda edad: </label>
+    <input type="number" id="edadDos" [(ngModel)]="edadDos">
+</div>
+
+<hr>
+<button (click)="Calcular()">Calcular</button>
+<hr>
+
+<div>
+    <label for="resultado">Resultado</label>
+    <input type="number" [(ngModel)]="resultado">
+</div>
+
+<div>
+    <label for="promedio">Promedio</label>
+    <input type="number" [(ngModel)]="promedio">
+</div>
