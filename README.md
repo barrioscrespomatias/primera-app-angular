@@ -4,4 +4,4 @@
 ![imagen](https://user-images.githubusercontent.com/40859037/231905086-b43245d3-ec70-47e4-9e08-14abff70bd4a.png)
 
 
-##Clase 07 Primer parcial - 11-05-23
+##Clase 07 Primer parcial - 18-05-23
