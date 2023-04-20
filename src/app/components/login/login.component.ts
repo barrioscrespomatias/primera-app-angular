@@ -1,41 +1,90 @@
-import { Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { Usuario } from '../../class/Usuario';
-import { FormBuilder } from '@angular/forms';
-
-import { UsuarioService } from '../../services/usuario.service';
-import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  // fb: FormBuilder = new FormBuilder();
-  usuario: Usuario = new Usuario(this.fb);
+export class LoginComponent implements OnInit {
+  usuario: Usuario = new Usuario();
 
-  // usuario: Usuario;
-  usuarioSubscription: Subscription = new Subscription();
+  constructor(private router: Router) {}
 
-  constructor(
-    private fb: FormBuilder,
-    private usuarioService: UsuarioService
-  ) {}
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    this.Login();
+  }
 
-  ngOnInit() {
-    this.usuario = this.usuarioService.getUsuario();
-    this.usuarioSubscription = this.usuarioService.usuarioCambiado.subscribe(
-      (usuario: Usuario) => {
-        this.usuario = usuario;
+  ngOnInit() {}
+
+  Login() {
+    let userPasswordLS: any = localStorage.getItem(this.usuario.userName);
+    let userExist = userPasswordLS !== null;
+
+    if (userExist)
+      if (userPasswordLS === this.usuario.password) {
+        this.SwalMessage("Bienvenido", "Se ha logueado correctamente!!")
+        this.navigateToBienvenido();
+      } else {
+        this.confirm();
+        this.SwalErrorMessage('Error', 'El password ingresado es incorrecto');
       }
-    );
+    else {
+      this.Register();
+      this.SwalMessage("Bienvenido!", "Se ha creado una cuenta")
+      this.navigateToBienvenido();
+    }
   }
 
-  // onSubmit() {
-  //   this.usuarioService.actualizarUsuario(this.usuario);
-  // }
-
-  ngOnDestroy() {
-    this.usuarioSubscription.unsubscribe();
+  Register() {
+    localStorage.setItem(this.usuario.userName, this.usuario.password);
   }
+
+  navigateToBienvenido() {
+    this.router.navigate(['/bienvenido']);
+  }
+
+  confirm() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to undo this action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User clicked the confirm button
+      } else if (result.isDenied) {
+        // User clicked the cancel button
+      }
+    });
+  }
+
+  SwalErrorMessage(title: string, text: string) {
+    Swal.fire({
+      icon: 'error',
+      title: title,
+      text: text,
+    });
+  }
+
+  SwalSuccessMessage(text: string) {
+    Swal.fire({
+      icon: 'success',
+      title: text,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+
+  SwalMessage(title: string, text: string) {
+    Swal.fire(
+      title,
+      text,
+      'success'
+    )}
 }

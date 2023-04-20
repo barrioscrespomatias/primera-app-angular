@@ -1,11 +1,14 @@
-<form [formGroup]="usuario.usuarioForm">
-    <div>
-        <label for="name">Ingrese nombre: </label>
-        <input id="name" type="text" formControlName="nombre">
-    </div>
-
-    <div>
-        <label for="name">Ingrese clave: </label>
-        <input id="clave" type="password" formControlName="clave" required minlength="4">
-    </div>
-</form>
+<div class="login-container">
+  <section class="login" id="login">
+    <header>
+      <h2>Login</h2>
+    </header>
+    <form>
+      <input type="text" class="login-input" placeholder="Usuario" required [(ngModel)] = "usuario.userName" name="usuario.userName" autofocus />
+      <input type="password" class="login-input" placeholder="Contrasena" [(ngModel)] = "usuario.password" name="usuario.password" required />
+      <div class="submit-container">
+        <button class="btn btn-success m-2" (click)="onSubmit()">Inciar sesión</button>
+      </div>
+    </form>
+  </section>
+</div>

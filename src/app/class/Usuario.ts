@@ -1,15 +1,12 @@
-import { Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-
 export class Usuario {
-  usuarioForm = this.fb.group({
-    nombre: [''],
-    clave: ['', Validators.required],
-  });
+
+  userName : string= "";
+  password : string= "";
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
   }
 
-  constructor(private fb: FormBuilder) {}
+  // constructor(private fb: FormBuilder) {}
+  constructor() {}
 }
